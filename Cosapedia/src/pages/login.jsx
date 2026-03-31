@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login as setLoginState } from '../store/slices/authSlice';
-// Asumiendo que tienes un authService creado
+import { useSelector } from 'react-redux';
+
 import { authService } from '../services/authService'; 
+import './login.css'
 
 const Login = () => {
+  const { isAuthenticated } = useSelector((state) => state.user);
   const [formData, setFormData] = useState({ nombre: '', contraseña: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+
+  useEffect(()=>{console.log(isAuthenticated)}, [])
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,6 +30,7 @@ const Login = () => {
         // Guardamos en el Store de Redux
         dispatch(setLoginState(response.user)); 
         console.log("Login exitoso");
+        navigate('/*');
       }
     } catch (err) {
       // Manejamos los 3 casos que programamos en el back

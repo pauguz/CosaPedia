@@ -1,4 +1,4 @@
-import WikiRouter from '../routing/WikiRouter'
+import WikiRouter from './routing/WikiRouter'
 //import './App.css'
 
 function App() {

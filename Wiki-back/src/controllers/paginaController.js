@@ -54,7 +54,7 @@ export const getByUser = async (req, res) => {
     try {
         const usuarioId=req.params.userId;
         const query = `
-        SELECT p.id, p.nombre
+        SELECT *
         FROM pagina p
         LEFT JOIN usuario_pagina up ON p.id = up.pagina_id
         WHERE up.usuario_id = ?

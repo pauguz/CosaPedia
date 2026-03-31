@@ -1,30 +1,43 @@
-import React from 'react'
-import { useState } from 'react'
-import reactLogo from '../assets/react.svg'
-import Generador from '../components/Generador'
-import BotonAdir from '../components/botonAdir'
-import Comp from '../components/comp'
-import Buscador from '../components/buscador'
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { pageService } from '../services/pageService';
+import PageCard from '../components/pageCard';
+import './Dashboard.css';
 
-const  Dashboard = () => {
-const [count, setCount] = useState(0)
-const [open, setOpen] = useState(false)
+const Dashboard = () => {
+  const [paginas, setPaginas] = useState([]);
+  const user = useSelector((state) => state.user.data);
 
-const Opening= ()=>{setOpen(!open)}
-  return (
-    <div width="100%" style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-        <h1 style={{display: 'flex', justifyContent: 'center'}}>CosaPedia</h1>
-        <span style={{display: 'flex', justifyContent: 'center', flex: 1, width: '100%'}}>
-          <Buscador/> <BotonAdir func={Opening} />
-        </span>
-        {    open ?
-            <Generador/>
-            :
-            <></>
+  useEffect(() => {
+    const fetchPages = async () => {
+      try {
+        if (user?.id) {
+          const data = await pageService.perUser(user.id);
+          setPaginas(data);
         }
-        <Comp/>
-    </div>
-  )
-}
+      } catch (err) {
+        console.error("Error cargando páginas", err);
+      }
+    };
+    fetchPages();
+  }, [user]);
 
-export default Dashboard
+  return (
+    <div className="dashboard-container">
+      <header className="dashboard-header">
+        <h1>Mi Biblioteca Histórica</h1>
+        <p>Bienvenido, <strong>{user?.nombre}</strong></p>
+      </header>
+
+      <div className="pages-grid">
+        {paginas.length > 0 ? (
+          paginas.map(p => <PageCard key={p.id} pagina={p} />)
+        ) : (
+          <p className="empty-msg">No has creado páginas aún. ¡Empieza tu investigación!</p>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default Dashboard;

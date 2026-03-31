@@ -1,0 +1,44 @@
+.page-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 1.25rem;
+    transition: all 0.3s ease; /* Transición suave */
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  /* EFECTO AL COLOCAR EL CURSOR */
+  .page-card:hover {
+    transform: translateY(-5px); /* Sube un poco */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1); /* Sombra más profunda */
+    border-color: #3b82f6; /* Cambia el borde a azul */
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .badge {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: #f3f4f6;
+    color: #4b5563;
+  }
+  
+  .date { font-size: 0.75rem; color: #9ca3af; }
+  .card-title { margin: 0; font-size: 1.1rem; color: #1f2937; }
+  .card-excerpt { font-size: 0.9rem; color: #6b7280; margin: 0; }
+  
+  /* Colores sutiles por tipo (opcional) */
+  .tipo-suceso { border-left: 4px solid #ef4444; }
+  .tipo-persona { border-left: 4px solid #3b82f6; }
+  .tipo-lugar { border-left: 4px solid #10b981; }

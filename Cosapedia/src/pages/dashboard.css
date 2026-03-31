@@ -1,0 +1,25 @@
+.dashboard-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .dashboard-header {
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #f3f4f6;
+    padding-bottom: 1rem;
+  }
+  
+  /* REJILLA RESPONSIVA */
+  .pages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .empty-msg {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #9ca3af;
+    padding: 3rem;
+  }

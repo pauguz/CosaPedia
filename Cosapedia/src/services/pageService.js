@@ -8,4 +8,10 @@ export const pageService={
         const { data } = await axios.get(`${baseUrl}/page/user/${userId}`);
         return data;
     },
+
+    perId: async (id) => {
+        console.log('iniciando busqueda de pagina de ese id')
+        const { data } = await axios.get(`${baseUrl}/page/${id}`);
+        return data[0];
+    },
 }
