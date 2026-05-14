@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from '../pages/login';
 import Dashboard from '../pages/dashboard';
+import DashboardRouter from './DashboardRouter';
 
 const WikiRouter = () => {
   // 1. Extraemos el estado de autenticación del Store
@@ -15,7 +16,7 @@ const WikiRouter = () => {
       />
       <Route 
         path="*" 
-        element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />} 
+        element={isAuthenticated ? <DashboardRouter /> : <Navigate to="/login" />} 
       />
     </Routes>
   );

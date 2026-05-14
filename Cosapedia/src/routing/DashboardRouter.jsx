@@ -6,6 +6,7 @@ const DashboardRouter = () => {
   return (
     <Routes>
       <Route path='*' element= {<Dashboard/>} />
+      <Route path="pages/:username/:entityName" element={<EntityPage />} />
     </Routes>
   )
 }
